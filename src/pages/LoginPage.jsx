@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Typography from '@material-ui/core/Typography';
 import { TextField, Button, Grid, makeStyles } from '@material-ui/core';
 import { Link } from 'react-router-dom';
@@ -17,6 +17,18 @@ const useStyles = makeStyles(theme => ({
 
 export default function LoginPage() {
     const classes = useStyles()
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+
+    const submitValue = () => {
+        const frmdetails = {
+            'Username' : username,
+            'Password' : password
+        }
+        console.log("User log in - details:", frmdetails);
+    }
+
 
     return (
         <div className={classes.root}>
@@ -24,18 +36,18 @@ export default function LoginPage() {
                 This is the Login page
             </Typography>
             <Grid align="center">
-                <Grid item xl={12} justify="center">
-                    <TextField id="standard-basic" label="Enter your username" />
+                <Grid item xl={12}>
+                    <TextField id="standard-basic" label="Enter your username" onChange={e => setUsername(e.target.value)} />
                 </Grid>
 
                 <Grid item xl={12}>
-                    <TextField id="standard-basic" label="Enter your password" />
+                    <TextField id="standard-basic" type="password" label="Enter your password" onChange={e => setPassword(e.target.value)} />
                 </Grid>
 
                 <Grid item xl={12}>
 
                     <Link to="./LandingPage">
-                        <Button variant="contained" color="primary">
+                        <Button variant="contained" color="primary" onClick={submitValue}>
                             Login
                      </Button>
                     </Link>
