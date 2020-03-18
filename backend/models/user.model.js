@@ -10,6 +10,37 @@ const userSchema = new Schema({
     trim: true,
     minlength: 3
   },
+  password: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3
+  },
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 11
+  },
+  emailAddress: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3,
+    unique: true
+  },
 }, {
   timestamps: true,
 });
