@@ -7,6 +7,12 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/:id').get((req, res) => {
+    User.findById(req.params.id)
+      .then(users => res.json(users))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+
 router.route('/add').post((req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -15,12 +21,20 @@ router.route('/add').post((req, res) => {
   const phoneNumber = req.body.phoneNumber;
   const emailAddress = req.body.emailAddress;
 
-
   const newUser = new User({username, password, firstName, lastName, phoneNumber, emailAddress});
 
   newUser.save()
     .then(() => res.json('User added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.route('/login').get((req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  User.findOne(req.params.username)
+    .then(users => res.json(users))
+    .catch(err => res.status(400).json('Error: ' + err))
+})
 
 module.exports = router;
