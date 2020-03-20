@@ -4,6 +4,7 @@ import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Grid, { GridSpacing } from "@material-ui/core/Grid";
 import NavBar from "./components/nav-bar";
 import Header from "./components/header";
+import FormCard from "./components/card";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -19,9 +20,10 @@ function App() {
     <div>
       <NavBar />
       <Grid container spacing={0}>
-        {/* Header Image */}
         <Header />
-        <Grid item xs={12}></Grid>
+        <Grid item xs={12}>
+          <FormCard />
+        </Grid>
       </Grid>
     </div>
   );

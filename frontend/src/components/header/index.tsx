@@ -2,7 +2,11 @@ import React from "react";
 import Grid, { GridSpacing } from "@material-ui/core/Grid";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import { H1, H2, AccentColorText } from "../../styling/text";
+import TextField from "@material-ui/core/TextField";
+import SearchIcon from "@material-ui/icons/Search";
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 interface Props {}
 
@@ -19,8 +23,15 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
       justifyContent: "center"
     },
-    title: {
-      flexGrow: 1
+    textField: {
+      padding: "30px 0 0 0",
+
+      "& > *": {
+        width: "100%"
+      }
+    },
+    iconButton: {
+      padding: 10
     }
   })
 );
@@ -33,13 +44,38 @@ const Header: React.FC<Props> = props => {
       <Paper className={classes.paper}>
         <Grid container spacing={0}>
           <Grid item xs={1}></Grid>
-          <Grid item xs={9}>
-            <Typography variant="h4" className={classes.title}>
-              <b>Form filling made simple.</b>
-            </Typography>
-            <Typography variant="subtitle1" className={classes.title}>
-              The one stop source for all your form filling needs.
-            </Typography>
+          <Grid item xs={4}>
+            <Grid container spacing={0}>
+              <Grid item xs={12}>
+                <H1>
+                  Form filling made <AccentColorText>simple.</AccentColorText>
+                </H1>
+              </Grid>
+              <Grid item xs={12}>
+                <H2>The one stop source for all your form filling needs</H2>
+              </Grid>
+              <Grid item xs={12}>
+                <form
+                  className={classes.textField}
+                  noValidate
+                  autoComplete="on"
+                >
+                  <TextField
+                    id="outlined-basic"
+                    label="What would you like to set up today?"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="start">
+                          <IconButton type="submit">
+                            <SearchIcon />
+                          </IconButton>
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                </form>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Paper>
