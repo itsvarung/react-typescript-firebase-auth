@@ -1,8 +1,8 @@
 import React from "react";
-import Grid, { GridSpacing } from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import { H1, H2, AccentColorText } from "../../styling/text";
+import { H1, H2, AccentColorText } from "./styles";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
