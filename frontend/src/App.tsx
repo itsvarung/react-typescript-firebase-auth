@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Grid from "@material-ui/core/Grid";
 import NavBar from "./components/nav-bar";
 import Header from "./components/header";
