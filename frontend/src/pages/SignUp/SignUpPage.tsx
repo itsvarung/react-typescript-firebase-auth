@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import { BasicDetails } from "./basicDetails";
 import { Address } from "./address";
+import { AdditionalDetails } from "./additionalDetails";
 
 const SignUpPage = () => {
   const history = useHistory();
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 function getSteps() {
-  return ["Basic Details", "Address", "Final"];
+  return ["Basic Details", "Address", "Additional Details"];
 }
 
 function getStepContent(step: number) {
@@ -43,7 +44,7 @@ function getStepContent(step: number) {
     case 1:
       return <Address />;
     case 2:
-      return "Final";
+      return <AdditionalDetails />;
     default:
       return "Unknown step";
   }

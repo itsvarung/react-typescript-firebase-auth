@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { Form, IFields, required, isEmail, maxLength } from "../form";
+import { Form, IFields, required, isEmail, maxLength, isNumber } from "../form";
 import { Field } from "../field";
 
 export const Address: React.SFC = () => {
@@ -12,6 +12,31 @@ export const Address: React.SFC = () => {
       editor: "dropdown",
       options: ["", "Lancaster", "Nottingham", "Essex", "Manchester"],
       validation: { rule: required }
+    },
+    housenumber: {
+      id: "housenumber",
+      label: "House Number",
+      validation: { rule: isNumber }
+    },
+    address: {
+      id: "address",
+      label: "Address",
+      validation: { rule: required }
+    },
+    city: {
+      id: "city",
+      label: "City",
+      validation: { rule: required }
+    },
+    county: {
+      id: "county",
+      label: "County",
+      validation: { rule: required }
+    },
+    postcode: {
+      id: "postcode",
+      label: "Postcode",
+      validation: { rule: required }
     }
   };
   return (
@@ -21,9 +46,14 @@ export const Address: React.SFC = () => {
       render={() => (
         <React.Fragment>
           <div className="alert alert-info" role="alert">
-            Welcome to Una! Please tell us a bit about yourself :)
+            Thanks for that! Now, please tell us more...
           </div>
           <Field {...fields.university} />
+          <Field {...fields.housenumber} />
+          <Field {...fields.address} />
+          <Field {...fields.city} />
+          <Field {...fields.county} />
+          <Field {...fields.postcode} />
         </React.Fragment>
       )}
     />

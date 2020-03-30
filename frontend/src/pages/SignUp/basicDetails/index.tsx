@@ -25,13 +25,6 @@ export const BasicDetails: React.SFC = () => {
       id: "dob",
       label: "Date of Birth"
     },
-    university: {
-      id: "university",
-      label: "University",
-      editor: "dropdown",
-      options: ["", "Lancaster", "Nottingham", "Essex", "Manchester"],
-      validation: { rule: required }
-    },
     about: {
       id: "about",
       label: "About You",
@@ -52,7 +45,6 @@ export const BasicDetails: React.SFC = () => {
           <Field {...fields.lastname} />
           <Field {...fields.dob} />
           <Field {...fields.email} />
-          <Field {...fields.university} />
           <Field {...fields.about} />
         </React.Fragment>
       )}

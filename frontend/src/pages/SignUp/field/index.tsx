@@ -1,11 +1,12 @@
 import * as React from "react";
 import { IErrors, IFormContext, FormContext, IValues } from "../form";
+import { useState } from "react";
 
 //The available editors for the field
-type Editor = "textbox" | "multilinetextbox" | "dropdown" | "datebox";
+type Editor = "textbox" | "multilinetextbox" | "dropdown" | "datebox" | "checkbox";
 
 // Alwaysssss watching
-// Mike Wazowski :!D Accidental Hitler
+// Mike Wazowski :D
 
 export interface IValidation {
   rule: (values: IValues, fieldName: string, args: any) => string;
@@ -106,21 +107,15 @@ export const Field: React.SFC<IFieldProps> = ({
                   </option>
                 ))}
 
-              {editor!.toLowerCase() === "datebox" && (
+              {editor!.toLowerCase() === "datebox" && ( // still incomplete
                 <input
-                  type="date"
                   id={id}
-                  value={value || ""}
-                  onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                    context.setValues({ [id]: e.currentTarget.value })
-                  }
-                  onBlur={(e: React.FormEvent<HTMLInputElement>) =>
-                    context.validate(id)
-                  }
+                  type="date"
+                  name="dateofbirth"
                   className="form-control"
-                  style={getEditorStyle(context.errors)}
                 />
               )}
+
             </select>
           )}
           {getError(context.errors) && (

@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import {Field} from "./SignUp/field";
+import { Form, IFields, required, isEmail, maxLength } from "./SignUp/form";
 
 import {
     BrowserRouter as Router,
@@ -15,17 +17,49 @@ const ContactUs = () => {
     function handleClick(){
         history.push("/")
     }
+    const fields : IFields = {
+    firstname: {
+        id: "firstname",
+        label: "First Name",
+        validation: { rule: required }
+      },
+      lastname: {
+        id: "lastname",
+        label: "Last Name",
+        validation: { rule: required }
+      },
+      email: {
+        id: "email",
+        label: "Email",
+        validation: { rule: isEmail }
+      },
+      issue: {
+        id: "issue",
+        label: "Tell us about your problem...",
+        editor: "multilinetextbox",
+        validation: { rule: maxLength, args: 200 }
+      }
+    }
 
     return (
-        <React.Fragment>
-        <h1>
-            Contact us page
-        </h1>
-
-        <button onClick={handleClick}>
-            Main Page
-        </button>
-        </React.Fragment>
+        <Form 
+            action="http://localhost:4351/api/contactus"
+            fields={fields}
+            render={() => (
+                <React.Fragment>
+                    <div className="alert alert-info" role="alert">
+                        Something not what you expected? Please let us know! We aim to respond within 3 working days.
+                    </div>
+                    <Field {...fields.firstname} />
+                    <Field {...fields.lastname} />
+                    <Field {...fields.email} />
+                    <Field {...fields.issue} />
+                    <button onClick={handleClick}>
+                        Submit
+                    </button>
+                </React.Fragment>
+            )}
+        />
     )
 }
 

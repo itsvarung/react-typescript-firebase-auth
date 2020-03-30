@@ -59,6 +59,14 @@ export const maxLength = (
     ? `This field should be a maximum of ${length} characters. Please trim it down!`
     : "";
 
+export const isNumber = (values: IValues, fieldName: string): string =>
+  values[fieldName] &&
+    values[fieldName].search(
+      /^[0-9]*$/
+    )
+      ? "This must be a number"
+      : "";
+
 export interface IFields {
   [key: string]: IFieldProps;
 }
