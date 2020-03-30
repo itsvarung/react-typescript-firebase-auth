@@ -21,7 +21,7 @@ const Checklist: React.FC<Props> = props => {
             <FormCard
               title={form.title}
               description={form.description}
-              cardColor={"#1E2937"}
+              cardColor={form.cardColor}
             />
           </Grid>
         ))}
