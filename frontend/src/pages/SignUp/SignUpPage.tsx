@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
 import { BasicDetails } from "./basicDetails";
+import { Address } from "./address";
 
 const SignUpPage = () => {
   const history = useHistory();
@@ -40,7 +41,7 @@ function getStepContent(step: number) {
     case 0:
       return <BasicDetails />;
     case 1:
-      return "Address";
+      return <Address />;
     case 2:
       return "Final";
     default:
