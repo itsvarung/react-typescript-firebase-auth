@@ -12,7 +12,7 @@ describe("Form Card", () => {
       />
     );
 
-    expect(wrapper.childAt(0).text()).toBe("Test Card Title");
-    expect(wrapper.childAt(1).text()).toBe("Test Card Description");
+    expect(wrapper.contains("Test Card Title")).toBeTruthy();
+    expect(wrapper.contains("Test Card Description")).toBeTruthy();
   });
 });
