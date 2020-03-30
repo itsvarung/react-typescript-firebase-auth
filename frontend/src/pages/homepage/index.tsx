@@ -13,7 +13,7 @@ const HomePage: React.FC<Props> = props => {
       <NavBar />
       <Styles.MainWrapper>
         <Header />
-        <Checklist title="" description="" forms={checklistCards} />
+        <Checklist title="Hello" description="Hi" forms={checklistCards} />
       </Styles.MainWrapper>
     </React.Fragment>
   );
