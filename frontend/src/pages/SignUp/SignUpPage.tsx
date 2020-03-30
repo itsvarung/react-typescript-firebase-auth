@@ -6,7 +6,7 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
-import { BasicDetails } from "./creator";
+import { BasicDetails } from "./basicDetails";
 
 const SignUpPage = () => {
   const history = useHistory();
@@ -55,7 +55,7 @@ export default function HorizontalLinearStepper() {
   const steps = getSteps();
 
   const isStepOptional = (step: number) => {
-    return step === 1;
+    return step === null;
   };
 
   const isStepSkipped = (step: number) => {
