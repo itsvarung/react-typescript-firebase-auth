@@ -15,9 +15,9 @@ import {
   useHistory
 } from "react-router-dom";
 
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/Login/LoginPage'
 import { Button } from "@material-ui/core";
-import SignUpPage from "./pages/SignUpPage";
+import SignUpPage from "./pages/SignUp/SignUpPage";
 import ContactUs from "./pages/ContactUs"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
