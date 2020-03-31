@@ -14,6 +14,11 @@ const HomePage: React.FC<Props> = props => {
       <Styles.MainWrapper>
         <Header />
         <Checklist title="" description="" forms={checklistCards} />
+        <Checklist
+          title="University Checklist"
+          description="Start university with your best foot forward"
+          forms={checklistCards}
+        />
       </Styles.MainWrapper>
     </React.Fragment>
   );
