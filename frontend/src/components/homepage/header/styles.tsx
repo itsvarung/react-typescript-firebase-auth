@@ -14,3 +14,12 @@ export const H2 = styled.h2`
 export const AccentColorText = styled.span`
   color: #32ddfd;
 `;
+
+export const BackgroundCard = styled.div`
+  display: flex;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.02), 0 0px 40px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  height: 400px;
+  background: #ffffff;
+`;

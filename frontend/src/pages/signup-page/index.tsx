@@ -6,9 +6,9 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
-import { BasicDetails } from "./basicDetails";
-import { Address } from "./address";
-import { AdditionalDetails } from "./additionalDetails";
+import { BasicDetails } from "../../components/signuppage/basic-details";
+import { Address } from "../../components/signuppage/address";
+import { AdditionalDetails } from "../../components/signuppage/additional-details";
 
 const SignUpPage = () => {
   const history = useHistory();

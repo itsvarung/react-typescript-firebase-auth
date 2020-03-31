@@ -1,8 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import { H1, H2, AccentColorText } from "./styles";
+import { H1, H2, AccentColorText, BackgroundCard } from "./styles";
 import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
@@ -14,14 +13,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1
-    },
-    paper: {
-      height: 400,
-      width: "100%",
-      boxShadow: "0 8px 40px -12px rgba(0,0,0,0.1)",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center"
     },
     textField: {
       padding: "30px 0 0 0",
@@ -41,7 +32,7 @@ const Header: React.FC<Props> = props => {
 
   return (
     <Grid item xs={12}>
-      <Paper className={classes.paper}>
+      <BackgroundCard>
         <Grid container spacing={0}>
           <Grid item xs={1}></Grid>
           <Grid item xs={4}>
@@ -78,7 +69,7 @@ const Header: React.FC<Props> = props => {
             </Grid>
           </Grid>
         </Grid>
-      </Paper>
+      </BackgroundCard>
     </Grid>
   );
 };

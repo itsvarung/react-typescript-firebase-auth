@@ -1,12 +1,7 @@
 import * as React from "react";
-import Field from "../field";
-import { render } from "@testing-library/react";
 import { IFieldProps } from "../field";
-import { useHistory } from "react-router-dom";
 
 export interface IFormContext extends IFormState {
-
-  
   /* Function that allows values in the values state to be set */
   setValues: (values: IValues) => void;
 
@@ -60,12 +55,9 @@ export const maxLength = (
     : "";
 
 export const isNumber = (values: IValues, fieldName: string): string =>
-  values[fieldName] &&
-    values[fieldName].search(
-      /^[0-9]*$/
-    )
-      ? "This must be a number"
-      : "";
+  values[fieldName] && values[fieldName].search(/^[0-9]*$/)
+    ? "This must be a number"
+    : "";
 
 export interface IFields {
   [key: string]: IFieldProps;
@@ -224,8 +216,6 @@ export class Form extends React.Component<IFormProps, IFormState> {
       setValues: this.setValues,
       validate: this.validate
     };
-
-    
 
     return (
       <FormContext.Provider value={context}>

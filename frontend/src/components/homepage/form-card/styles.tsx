@@ -7,7 +7,6 @@ export const Card = styled.span<CardProps>`
   display: flex;
   flex-flow: column;
   overflow: hidden;
-  margin: 48px auto 0;
   padding: 30px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.02), 0 0px 40px rgba(0, 0, 0, 0.08);
   border-radius: 10px;
