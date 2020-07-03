@@ -3,5 +3,6 @@ export interface Form {
   title: String;
   description: String;
   cardColor: String;
-  url: String;
+  url: string;
+  progress: number;
 }

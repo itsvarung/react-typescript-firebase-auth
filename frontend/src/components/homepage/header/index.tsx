@@ -1,8 +1,14 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  withStyles,
+} from "@material-ui/core/styles";
 import { H1, H2, AccentColorText, BackgroundCard } from "./styles";
 import TextField from "@material-ui/core/TextField";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -12,24 +18,26 @@ interface Props {}
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1
+      flexGrow: 1,
     },
     textField: {
       padding: "30px 0 0 0",
-
       "& > *": {
-        width: "100%"
-      }
+        width: "100%",
+      },
     },
     iconButton: {
-      padding: 10
-    }
+      padding: 10,
+      color: "white",
+    },
+    input: {
+      color: "white",
+    },
   })
 );
 
-const Header: React.FC<Props> = props => {
+const Header: React.FC<Props> = (props) => {
   const classes = useStyles();
-
   return (
     <Grid item xs={12}>
       <BackgroundCard>
@@ -38,9 +46,7 @@ const Header: React.FC<Props> = props => {
           <Grid item xs={4}>
             <Grid container spacing={0}>
               <Grid item xs={12}>
-                <H1>
-                  Form filling made <AccentColorText>simple.</AccentColorText>
-                </H1>
+                <H1>Form filling made simple.</H1>
               </Grid>
               <Grid item xs={12}>
                 <H2>The one stop source for all your form filling needs</H2>
@@ -52,16 +58,24 @@ const Header: React.FC<Props> = props => {
                   autoComplete="on"
                 >
                   <TextField
-                    id="outlined-basic"
+                    id="search"
+                    variant="outlined"
                     label="What would you like to set up today?"
+                    InputLabelProps={{
+                      style: { color: "#fff" },
+                    }}
                     InputProps={{
+                      className: classes.input,
                       endAdornment: (
-                        <InputAdornment position="start">
+                        <InputAdornment
+                          position="start"
+                          className={classes.iconButton}
+                        >
                           <IconButton type="submit">
                             <SearchIcon />
                           </IconButton>
                         </InputAdornment>
-                      )
+                      ),
                     }}
                   />
                 </form>

@@ -7,7 +7,7 @@ import Checklist from "../../components/homepage/checklist";
 
 interface Props {}
 
-const HomePage: React.FC<Props> = props => {
+const HomePage: React.FC<Props> = (props) => {
   return (
     <React.Fragment>
       <NavBar />
@@ -32,20 +32,23 @@ const checklistCards: Form[] = [
     title: "University Checklist",
     description: "Start university with your best foot forward",
     cardColor: "#1E2937",
-    url: ""
+    url: "www.google.com",
+    progress: 10,
   },
   {
     id: 1,
     title: "Explorer Checklist",
     description: "Passport? Check. We’re ready for take off.",
     cardColor: "#1E2937",
-    url: ""
+    url: "www.google.com",
+    progress: 20,
   },
   {
     id: 2,
     title: "Entertainment Checklist",
     description: "Netflix and chill up and ready in 5 minutes.",
     cardColor: "#1E2937",
-    url: ""
-  }
+    url: "www.google.com",
+    progress: 70,
+  },
 ];

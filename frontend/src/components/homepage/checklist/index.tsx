@@ -10,18 +10,22 @@ interface Props {
   forms: Form[];
 }
 
-const Checklist: React.FC<Props> = props => {
+const Checklist: React.FC<Props> = (props) => {
   return (
     <Styles.CenteredWrapper>
-      <Styles.H1>{props.title}</Styles.H1>
-      <Styles.H2>{props.description}</Styles.H2>
+      <Styles.HeaderAndSubHeaderWrapper>
+        <Styles.H1>{props.title}</Styles.H1>
+        <Styles.H2>{props.description}</Styles.H2>
+      </Styles.HeaderAndSubHeaderWrapper>
       <Grid container spacing={3}>
-        {props.forms.map(form => (
+        {props.forms.map((form) => (
           <Grid item xs={4} key={form.id}>
             <FormCard
               title={form.title}
               description={form.description}
               cardColor={form.cardColor}
+              progress={form.progress}
+              link={form.url}
             />
           </Grid>
         ))}
