@@ -8,12 +8,12 @@ import {
   Route,
   Link,
   BrowserRouter,
-  useHistory
+  useHistory,
 } from "react-router-dom";
 
 import LoginPage from "./pages/login-page";
 import SignUpPage from "./pages/signup-page";
-import ContactUs from "./pages/contact-us-page";
+import FormPage from "./pages/form";
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           <Route path="/" exact component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />
-          <Route path="/contactus" component={ContactUs} />
+          <Route path="/form" component={FormPage} />
         </Switch>
       </BrowserRouter>
     </React.Fragment>

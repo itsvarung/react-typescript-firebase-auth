@@ -25,7 +25,7 @@ const Checklist: React.FC<Props> = (props) => {
               description={form.description}
               cardColor={form.cardColor}
               progress={form.progress}
-              link={form.url}
+              url={form.url}
             />
           </Grid>
         ))}

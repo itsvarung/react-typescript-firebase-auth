@@ -1,13 +1,13 @@
 import React from "react";
 import { Card, CardH1, CardH2, TextWrapper, ViewMoreLink } from "./styles";
-import { ProgressBar } from "./ProgressBar";
+import { ProgressBar } from "./progress-bar";
 
 interface Props {
   title: String;
   description: String;
   cardColor: String;
   progress: number;
-  link: string;
+  url: string;
 }
 
 const FormCard: React.FC<Props> = (props) => {
@@ -17,7 +17,7 @@ const FormCard: React.FC<Props> = (props) => {
         <div>
           <CardH1>{props.title}</CardH1>
           <CardH2>{props.description}</CardH2>
-          <ViewMoreLink href="google.com" target="_blank">
+          <ViewMoreLink href={props.url} target="_blank">
             View More
           </ViewMoreLink>
         </div>

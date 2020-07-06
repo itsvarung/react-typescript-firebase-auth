@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core/styles";
 import { H1, H2, AccentColorText, BackgroundCard } from "./styles";
 import TextField from "@material-ui/core/TextField";
-import LinearProgress from "@material-ui/core/LinearProgress";
 import SearchIcon from "@material-ui/icons/Search";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
