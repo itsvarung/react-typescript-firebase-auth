@@ -10,8 +10,3 @@ export const CenteredWrapper = styled.div`
   margin: auto;
   width: 50%;
 `;
-
-export const ButtonWrapper = styled.div`
-  padding-top: 30px;
-  padding-bottom: 30px;
-`;

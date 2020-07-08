@@ -3,15 +3,21 @@ import * as Form from "../../../models/Form";
 import Grid from "@material-ui/core/Grid";
 import FormTextField from "../../../components/form/text-field";
 import * as Styles from "./styles";
+import * as User from "../../../models/User";
 
 interface Props {
   formSection: Form.FormSection;
+  user: User.User;
+  handleChange: (inputType: Form.InputType, e: React.ChangeEvent<any>) => void;
 }
 
 // Creates a component for a section of the current form you are viewing
 // Parameters:
 //  -  formSection: the section of the current form which you are trying to render
 const FormSection: React.FC<Props> = (props) => {
+  console.log("REFRESH");
+  console.log(props.user);
+
   return (
     <React.Fragment>
       <Styles.HeaderAndSubHeaderWrapper>
@@ -29,6 +35,12 @@ const FormSection: React.FC<Props> = (props) => {
                   helperText: field.helperText,
                   inputType: field.inputType,
                 }}
+                handleChange={props.handleChange}
+                defaultValue={
+                  props.user[Form.TypeOfData[props.formSection.typeOfData]][
+                    field.inputType
+                  ]
+                }
               />
             </Grid>
           ))}

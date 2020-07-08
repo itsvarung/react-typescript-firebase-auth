@@ -4,6 +4,8 @@ import * as Form from "../../../models/Form";
 
 interface Props {
   formField: Form.FormField;
+  defaultValue: string;
+  handleChange: (inputType: Form.InputType, e: React.ChangeEvent<any>) => void;
 }
 
 // Creates a textfield
@@ -12,10 +14,15 @@ interface Props {
 const FormTextField: React.FC<Props> = (props) => {
   return (
     <TextField
+      name={props.formField.inputType}
       id={props.formField.inputType}
       variant="outlined"
       label={props.formField.label}
       type="email"
+      defaultValue={props.defaultValue}
+      onChange={(ev: React.ChangeEvent<HTMLInputElement>): void =>
+        props.handleChange(props.formField.inputType, ev)
+      }
       fullWidth
     />
   );

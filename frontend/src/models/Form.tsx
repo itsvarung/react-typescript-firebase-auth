@@ -9,9 +9,14 @@ export interface Form {
 }
 
 export interface FormSection {
+  typeOfData: TypeOfData;
   title: string;
   subtitle: string;
   fields: FormField[];
+}
+
+export enum TypeOfData {
+  basicDetails = "basicDetails",
 }
 
 export interface FormField {
@@ -21,11 +26,10 @@ export interface FormField {
 }
 
 export enum InputType {
-  FIRSTNAME = "firstname",
-  LASTNAME = "lastname",
-  PHONENUMBER = "mobile",
-  EMAIL = "email",
-  DOB = "dob",
-  ADDRESS = "address",
-  NONE = "off",
+  firstname = "firstname",
+  lastname = "lastname",
+  mobile = "mobile",
+  email = "email",
+  dob = "dob",
+  address = "address",
 }

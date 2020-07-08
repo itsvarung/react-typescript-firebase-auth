@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../../components/nav-bar";
 import Header from "../../components/homepage/header";
 import * as Styles from "./styles";
-import { Form, InputType } from "../../models/Form";
+import { Form, InputType, TypeOfData } from "../../models/Form";
 import Checklist from "../../components/homepage/checklist";
 
 interface Props {}
@@ -36,18 +36,19 @@ const checklistCards: Form[] = [
     progress: 10,
     formSections: [
       {
+        typeOfData: TypeOfData.basicDetails,
         title: "Basic Details",
         subtitle: "Tell us a little bit about you",
         fields: [
           {
             label: "First Name",
             helperText: "John",
-            inputType: InputType.FIRSTNAME,
+            inputType: InputType.firstname,
           },
           {
             label: "Last Name",
             helperText: "Doe",
-            inputType: InputType.LASTNAME,
+            inputType: InputType.lastname,
           },
         ],
       },
