@@ -12,34 +12,45 @@ interface Props {
   user: User.User;
 }
 
+// Render the form page
+// Parameters:
+//  - form: the form you want to render which contains information about the different form sections and questions
+//  - user: the current data we have on the user
 const FormPage: React.FC<Props> = (props) => {
-  const [userData, updateUserData] = React.useState(newUser);
+  //Current user object
+  const [userDataState, updateUserDataState] = React.useState(newUser);
+
+  //Current active form section that is visible on screen
   const [activeSection, setActiveSection] = React.useState(0);
 
+  //Iterates the stepper and shows the next page
   const handleNext = () => {
     setActiveSection((prevActiveStep) => prevActiveStep + 1);
   };
 
+  //De-iterates the stepper Goes back a page
   const handleBack = () => {
     setActiveSection((prevActiveStep) => prevActiveStep - 1);
   };
 
+  //Handles submitting of the form when the form reaches the final page
   const handleSubmit = () => {
     setActiveSection(0);
   };
 
+  //Handles any changes to form values
   const handleInputChange = (
     inputType: Form.InputType,
-    e: React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<any>
   ) => {
     //Get the current User Details Section that is being updated and update it with the new values
     const currentSectionOfUserDataBeingUpdated =
-      userData[formSample.formSections[activeSection].typeOfData];
+      userDataState[formSample.formSections[activeSection].typeOfData];
     currentSectionOfUserDataBeingUpdated[inputType] = e.target.value;
 
     //Update state with updated user details section
-    updateUserData({
-      ...userData,
+    updateUserDataState({
+      ...userDataState,
       [formSample.formSections[activeSection]
         .typeOfData]: currentSectionOfUserDataBeingUpdated,
     });
@@ -56,7 +67,7 @@ const FormPage: React.FC<Props> = (props) => {
           />
 
           <FormSection
-            user={userData}
+            user={userDataState}
             formSection={formSample.formSections[activeSection]}
             handleChange={handleInputChange}
           />
