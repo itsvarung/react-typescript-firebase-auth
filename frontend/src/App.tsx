@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HomePage from "./pages/homepage";
 
 import { GlobalStyle } from "./styling/global";
@@ -14,9 +14,18 @@ import {
 import LoginPage from "./pages/login-page";
 import SignUpPage from "./pages/signup-page";
 import FormPage from "./pages/form";
+import firebase from "./components/firebase";
 
-function App() {
-  return (
+export default function App() {
+  const [firebaseInitialized, setFirebaseInialized] = useState(false);
+
+  useEffect(() => {
+    firebase.isInitialized().then((val: boolean) => {
+      setFirebaseInialized(val);
+    });
+  });
+
+  return firebaseInitialized !== false ? (
     <React.Fragment>
       <GlobalStyle />
 
@@ -29,7 +38,7 @@ function App() {
         </Switch>
       </BrowserRouter>
     </React.Fragment>
+  ) : (
+    <div id="loader"></div>
   );
 }
-
-export default App;

@@ -7,6 +7,10 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
+import firebase from "../../components/firebase";
+import "firebase/auth";
+import "firebase/firestore";
+import { useHistory } from "react-router-dom";
 
 const loginFormSection: Form.FormSection = {
   title: "Sign In",
@@ -69,7 +73,23 @@ const LoginPage = () => {
     });
   };
 
-  const handleSubmit = () => {};
+  const history = useHistory();
+
+  async function handleSubmit() {
+    try {
+      await firebase.login(
+        userDataState.basicDetails.email,
+        userDataState.basicDetails.password
+      );
+      history.replace("/");
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  function handleRegister() {
+    history.replace("/signup");
+  }
 
   return (
     <Styles.MainWrapper>
@@ -123,10 +143,10 @@ const LoginPage = () => {
               variant="outlined"
               style={{ border: "1px solid #2d70d8", color: "#2d70d8" }}
               onClick={() => {
-                handleSubmit();
+                handleRegister();
               }}
             >
-              Sign Up
+              Register
             </Button>
           </Styles.ButtonsWrapper>
         </form>

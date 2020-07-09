@@ -4,6 +4,9 @@ import Header from "../../components/homepage/header";
 import * as Styles from "./styles";
 import { Form, InputType, TypeOfData } from "../../models/Form";
 import Checklist from "../../components/homepage/checklist";
+import firebase from "../../components/firebase";
+import "firebase/auth";
+import "firebase/firestore";
 
 interface Props {}
 
@@ -13,6 +16,12 @@ const HomePage: React.FC<Props> = (props) => {
       <NavBar />
       <Styles.MainWrapper>
         <Header />
+        <h3>
+          Hello there{" "}
+          {firebase.getCurrentFirstname()
+            ? firebase.getCurrentFirstname()
+            : "stranger"}
+        </h3>
         <Checklist title="" description="" forms={checklistCards} />
         <Checklist
           title="University Checklist"
