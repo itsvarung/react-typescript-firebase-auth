@@ -9,4 +9,5 @@ export interface BasicDetails {
   mobile: string;
   address: string;
   email: string;
+  password: string;
 }

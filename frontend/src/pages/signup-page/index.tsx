@@ -1,169 +1,148 @@
 import React from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
+import * as Styles from "./styles";
+import * as Form from "../../models/Form";
+import * as User from "../../models/User";
+import FormTextField from "../../components/text-field";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import { useHistory } from "react-router-dom";
-import { BasicDetails } from "../../components/signuppage/basic-details";
-import { Address } from "../../components/signuppage/address";
-import { AdditionalDetails } from "../../components/signuppage/additional-details";
+import Box from "@material-ui/core/Box";
 
-const SignUpPage = () => {
-  const history = useHistory();
-
-  function handleSignUpClick() {
-    history.push("/");
-  }
+const loginFormSection: Form.FormSection = {
+  title: "Sign Up",
+  subtitle: "You're one step closer to form filling heaven",
+  typeOfData: Form.TypeOfData.basicDetails,
+  fields: [
+    {
+      label: "First Name",
+      helperText: "John",
+      inputType: Form.InputType.firstname,
+    },
+    {
+      label: "Last Name",
+      helperText: "Doe",
+      inputType: Form.InputType.lastname,
+    },
+    {
+      label: "Email Address",
+      helperText: "john@email.com",
+      inputType: Form.InputType.email,
+    },
+    {
+      label: "Password",
+      helperText: "j1233",
+      inputType: Form.InputType.password,
+    },
+  ],
 };
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: "100%"
+const newUser: User.User = {
+  basicDetails: {
+    firstname: "",
+    lastname: "",
+    email: "",
+    address: "",
+    mobile: "",
+    dob: "",
+    password: "",
+  },
+};
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
     },
-    button: {
-      marginRight: theme.spacing(1)
-    },
-    instructions: {
-      marginTop: theme.spacing(1),
-      marginBottom: theme.spacing(1)
-    }
-  })
-);
+  },
+}));
 
-function getSteps() {
-  return ["Basic Details", "Address", "Additional Details"];
-}
+const SignUpPage = () => {
+  //Current user object
+  const [userDataState, updateUserDataState] = React.useState(newUser);
 
-function getStepContent(step: number) {
-  switch (step) {
-    case 0:
-      return <BasicDetails />;
-    case 1:
-      return <Address />;
-    case 2:
-      return <AdditionalDetails />;
-    default:
-      return "Unknown step";
-  }
-}
-
-export default function HorizontalLinearStepper() {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set<number>());
-  const steps = getSteps();
 
-  const isStepOptional = (step: number) => {
-    return step === null;
-  };
+  //Handles any changes to form values
+  const handleInputChange = (
+    inputType: Form.InputType,
+    e: React.ChangeEvent<any>
+  ) => {
+    //Get the current User Details Section that is being updated and update it with the new values
+    const currentSectionOfUserDataBeingUpdated =
+      userDataState[loginFormSection.typeOfData];
+    currentSectionOfUserDataBeingUpdated[inputType] = e.target.value;
 
-  const isStepSkipped = (step: number) => {
-    return skipped.has(step);
-  };
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-    setSkipped(prevSkipped => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
+    //Update state with updated user details section
+    updateUserDataState({
+      ...userDataState,
+      [loginFormSection.typeOfData]: currentSectionOfUserDataBeingUpdated,
     });
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
+  const handleSubmit = () => {};
 
   return (
-    <div className={classes.root}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
-          const stepProps: { completed?: boolean } = {};
-          const labelProps: { optional?: React.ReactNode } = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography variant="caption">Optional</Typography>
-            );
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <div>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
+    <Styles.MainWrapper>
+      <Styles.LeftPageWrapper>
+        <Styles.LeftPageHeadingWrapper>
+          <Styles.H1Left> Welcome To Una</Styles.H1Left>
+          <Styles.H2Left>
+            {" "}
+            Form filling just got a whole lot simpler.
+          </Styles.H2Left>
+        </Styles.LeftPageHeadingWrapper>
+      </Styles.LeftPageWrapper>
+
+      <Styles.RightPageWrapper>
+        <Styles.RightPageHeadingWrapper>
+          <Styles.H1Right>{loginFormSection.title}</Styles.H1Right>
+          <Styles.H2Right>{loginFormSection.subtitle}</Styles.H2Right>
+        </Styles.RightPageHeadingWrapper>
+
+        <form>
+          <Grid container spacing={3}>
+            {loginFormSection.fields.map((field) => (
+              <Grid item xs={12} key={field.inputType}>
+                <FormTextField
+                  formField={{
+                    label: field.label,
+                    helperText: field.helperText,
+                    inputType: field.inputType,
+                  }}
+                  handleChange={handleInputChange}
+                  defaultValue=""
+                />
+              </Grid>
+            ))}
+          </Grid>
+          <Styles.ButtonsWrapper>
+            <Button
+              className={classes.root}
+              variant="contained"
+              style={{ backgroundColor: "#2d70d8", color: "#fff" }}
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              Sign Up
             </Button>
-          </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {getStepContent(activeStep)}
-            </Typography>
-            <div>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                className={classes.button}
-              >
-                Back
-              </Button>
-              {isStepOptional(activeStep) && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSkip}
-                  className={classes.button}
-                >
-                  Skip
-                </Button>
-              )}
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleNext}
-                className={classes.button}
-              >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
+          </Styles.ButtonsWrapper>
+          <Styles.ButtonsWrapper>
+            <Button
+              className={classes.root}
+              variant="outlined"
+              style={{ border: "1px solid #2d70d8", color: "#2d70d8" }}
+              onClick={() => {
+                handleSubmit();
+              }}
+            >
+              Sign In
+            </Button>
+          </Styles.ButtonsWrapper>
+        </form>
+      </Styles.RightPageWrapper>
+    </Styles.MainWrapper>
   );
-}
+};
+
+export default SignUpPage;

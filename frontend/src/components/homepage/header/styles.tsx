@@ -11,6 +11,7 @@ export const H2 = styled.h2`
   color: #ffffff;
   font-weight: 400;
 `;
+
 export const AccentColorText = styled.span`
   color: #32ddfd;
 `;

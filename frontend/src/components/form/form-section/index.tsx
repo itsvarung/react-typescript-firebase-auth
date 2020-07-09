@@ -1,7 +1,7 @@
 import React from "react";
 import * as Form from "../../../models/Form";
 import Grid from "@material-ui/core/Grid";
-import FormTextField from "../../../components/form/text-field";
+import FormTextField from "../../text-field";
 import * as Styles from "./styles";
 import * as User from "../../../models/User";
 
@@ -15,9 +15,6 @@ interface Props {
 // Parameters:
 //  -  formSection: the section of the current form which you are trying to render
 const FormSection: React.FC<Props> = (props) => {
-  console.log("REFRESH");
-  console.log(props.user);
-
   return (
     <React.Fragment>
       <Styles.HeaderAndSubHeaderWrapper>

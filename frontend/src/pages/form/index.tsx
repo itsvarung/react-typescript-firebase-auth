@@ -156,6 +156,7 @@ var basicDetails: User.BasicDetails = {
   address: "",
   mobile: "019312",
   dob: "",
+  password: "",
 };
 
 var newUser: User.User = {

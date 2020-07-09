@@ -32,4 +32,5 @@ export enum InputType {
   email = "email",
   dob = "dob",
   address = "address",
+  password = "password",
 }
