@@ -4,7 +4,6 @@ import * as Form from "../../models/Form";
 import * as User from "../../models/User";
 import FormTextField from "../../components/text-field";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import firebase from "../../components/firebase";
@@ -52,19 +51,9 @@ const newUser: User.User = {
   },
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-}));
-
 const SignUpPage = () => {
   //Current user object
   const [userDataState, updateUserDataState] = React.useState(newUser);
-
-  const classes = useStyles();
 
   const history = useHistory();
 
@@ -137,9 +126,12 @@ const SignUpPage = () => {
           </Grid>
           <Styles.ButtonsWrapper>
             <Button
-              className={classes.root}
               variant="contained"
-              style={{ backgroundColor: "#2d70d8", color: "#fff" }}
+              style={{
+                backgroundColor: "#2d70d8",
+                color: "#fff",
+                height: "50px",
+              }}
               onClick={() => {
                 onRegister();
               }}
@@ -149,9 +141,12 @@ const SignUpPage = () => {
           </Styles.ButtonsWrapper>
           <Styles.ButtonsWrapper>
             <Button
-              className={classes.root}
               variant="outlined"
-              style={{ border: "1px solid #2d70d8", color: "#2d70d8" }}
+              style={{
+                border: "1px solid #2d70d8",
+                color: "#2d70d8",
+                height: "50px",
+              }}
               onClick={() => {
                 handleSubmit();
               }}

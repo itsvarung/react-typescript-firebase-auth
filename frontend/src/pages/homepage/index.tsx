@@ -13,15 +13,9 @@ interface Props {}
 const HomePage: React.FC<Props> = (props) => {
   return (
     <React.Fragment>
-      <NavBar />
+      <NavBar firstname={firebase.getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Header />
-        <h3>
-          Hello there{" "}
-          {firebase.getCurrentFirstname()
-            ? firebase.getCurrentFirstname()
-            : "stranger"}
-        </h3>
         <Checklist title="" description="" forms={checklistCards} />
         <Checklist
           title="University Checklist"
