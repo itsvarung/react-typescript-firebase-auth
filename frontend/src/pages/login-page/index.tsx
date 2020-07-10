@@ -36,7 +36,7 @@ const newUser: User.User = {
     lastname: "",
     email: "",
     address: "",
-    mobile: "",
+    phone: "",
     dob: "",
     password: "",
   },

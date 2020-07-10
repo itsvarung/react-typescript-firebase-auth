@@ -113,6 +113,11 @@ const formSample: Form.Form = {
           helperText: "Doe",
           inputType: Form.InputType.lastname,
         },
+        {
+          label: "Phone Number",
+          helperText: "Doe",
+          inputType: Form.InputType.phone,
+        },
       ],
     },
     {
@@ -157,7 +162,7 @@ var basicDetails: User.BasicDetails = {
   lastname: "",
   email: "reach",
   address: "",
-  mobile: "019312",
+  phone: "019312",
   dob: "",
   password: "",
 };

@@ -6,7 +6,7 @@ export interface BasicDetails {
   firstname: string;
   lastname: string;
   dob: string;
-  mobile: string;
+  phone: string;
   address: string;
   email: string;
   password: string;

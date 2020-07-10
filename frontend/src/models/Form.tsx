@@ -28,7 +28,7 @@ export interface FormField {
 export enum InputType {
   firstname = "firstname",
   lastname = "lastname",
-  mobile = "mobile",
+  phone = "phone",
   email = "email",
   dob = "dob",
   address = "address",
