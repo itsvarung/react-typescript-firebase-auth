@@ -15,6 +15,7 @@ import LoginPage from "./pages/login-page";
 import SignUpPage from "./pages/signup-page";
 import FormPage from "./pages/form";
 import { auth } from "./services/firebase";
+import AccountDetails from "./pages/accountdetails";
 
 export default function App() {
   const [firebaseInitialized, setFirebaseInialized] = useState(false);
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />
           <Route path="/form" component={FormPage} />
+          <Route path="/account" component={AccountDetails} />
         </Switch>
       </BrowserRouter>
     </React.Fragment>

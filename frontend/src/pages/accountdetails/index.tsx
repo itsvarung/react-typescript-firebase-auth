@@ -1,28 +1,37 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/nav-bar";
-import Header from "../../components/homepage/header";
-import HeaderLoading from "../../components/homepage/headerloading";
-import HeaderLoggedOut from "../../components/homepage/headerloggedout";
+import Header from "../../components/accountdetails/header";
+import HeaderLoading from "../../components/accountdetails/headerloading";
+import HeaderLoggedOut from "../../components/accountdetails/headerloggedout";
+import Section from "../../components/accountdetails/section";
 import * as Styles from "./styles";
 import { Form, InputType, TypeOfData } from "../../models/Form";
-import Checklist from "../../components/homepage/checklist";
-import { getCurrentFirstname, getForms } from "../../services/firebase";
-import ChecklistLoggedOut from "../../components/homepage/checklistloggedout";
+import { getCurrentFirstname } from "../../services/firebase";
 import "firebase/auth";
 import "firebase/firestore";
+import { useHistory } from "react-router-dom";
 
 interface Props {}
 
-const HomePage: React.FC<Props> = (props) => {
+const AccountDetails: React.FC<Props> = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [name, setName] = useState("");
 
   useEffect(() => {
-    getForms();
     const theName = getCurrentFirstname();
     theName ? setName(theName) : setName("");
     setLoading(false);
   }, []);
+
+  const history = useHistory();
+
+  const handleSignIn = () => {
+    history.push("/login");
+  };
+
+  const handleSignUp = () => {
+    history.push("/signup");
+  };
 
   return isLoading ? (
     <React.Fragment>
@@ -36,12 +45,7 @@ const HomePage: React.FC<Props> = (props) => {
       <NavBar firstname={getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Header />
-        <Checklist title="" description="" forms={checklistCards} />
-        <Checklist
-          title="University Checklist"
-          description="Start university with your best foot forward"
-          forms={checklistCards}
-        />
+        <Section title="" description="" forms={formDetails} />
       </Styles.MainWrapper>
     </React.Fragment>
   ) : (
@@ -49,24 +53,18 @@ const HomePage: React.FC<Props> = (props) => {
       <NavBar firstname={"stranger"} />
       <Styles.MainWrapper>
         <HeaderLoggedOut />
-        <ChecklistLoggedOut title="" description="" forms={checklistCards} />
-        <ChecklistLoggedOut
-          title="University Checklist"
-          description="Start university with your best foot forward"
-          forms={checklistCards}
-        />
       </Styles.MainWrapper>
     </React.Fragment>
   );
 };
 
-export default HomePage;
+export default AccountDetails;
 
-const checklistCards: Form[] = [
+const formDetails: Form[] = [
   {
     id: 0,
-    title: "University Checklist",
-    description: "Start university with your best foot forward",
+    title: "Basic Details",
+    description: "Alexander or Alexandra? Check your basic details here.",
     cardColor: "#1E2937",
     url: "form",
     progress: 10,
@@ -92,8 +90,9 @@ const checklistCards: Form[] = [
   },
   {
     id: 1,
-    title: "Explorer Checklist",
-    description: "Passport? Check. We’re ready for take off.",
+    title: "Address Details",
+    description:
+      "Couldn't wait to leave six months ago? Check your address here.",
     cardColor: "#1E2937",
     url: "form",
     progress: 20,
@@ -101,8 +100,9 @@ const checklistCards: Form[] = [
   },
   {
     id: 2,
-    title: "Entertainment Checklist",
-    description: "Netflix and chill up and ready in 5 minutes.",
+    title: "NHS Details",
+    description:
+      "Thought you were an A+ student, but turns out you're more B-? Check your NHS inputs here.",
     cardColor: "#1E2937",
     url: "form",
     progress: 70,

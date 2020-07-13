@@ -31,3 +31,9 @@ export const BackgroundCard = styled.div`
   display: inline-grid;
   align-items: center;
 `;
+
+export const ButtonsWrapper = styled.div`
+  width: 50%;
+  padding: 30px;
+  display: inline-grid;
+`;

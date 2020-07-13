@@ -74,7 +74,9 @@ const SignUpPage = () => {
     });
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    history.push("/login");
+  };
 
   async function onRegister() {
     try {
