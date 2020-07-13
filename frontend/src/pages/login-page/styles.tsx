@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import img from "../../images/Una-WhiteHalf.svg";
 
 export const MainWrapper = styled.div`
   min-width: 1200px;
@@ -9,6 +10,10 @@ export const LeftPageWrapper = styled.div`
   width: 40%;
   height: 100vh;
   background: #2d70d8;
+  background-image: url(${img});
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center bottom;
   display: inline-grid;
   align-items: center;
 `;

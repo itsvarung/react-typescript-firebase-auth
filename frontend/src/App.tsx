@@ -14,6 +14,7 @@ import {
 import LoginPage from "./pages/login-page";
 import SignUpPage from "./pages/signup-page";
 import FormPage from "./pages/form";
+import AccountDetails from "./pages/accountdetails";
 import firebase from "./components/firebase";
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />
           <Route path="/form" component={FormPage} />
+          <Route path="/account" component={AccountDetails} />
         </Switch>
       </BrowserRouter>
     </React.Fragment>

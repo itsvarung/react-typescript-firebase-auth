@@ -92,7 +92,6 @@ const LoginPage = () => {
           </Styles.H2Left>
         </Styles.LeftPageHeadingWrapper>
       </Styles.LeftPageWrapper>
-
       <Styles.RightPageWrapper>
         <Styles.RightPageHeadingWrapper>
           <Styles.H1Right>{loginFormSection.title}</Styles.H1Right>
