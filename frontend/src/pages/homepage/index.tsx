@@ -4,16 +4,20 @@ import Header from "../../components/homepage/header";
 import * as Styles from "./styles";
 import { Form, InputType, TypeOfData } from "../../models/Form";
 import Checklist from "../../components/homepage/checklist";
-import firebase from "../../components/firebase";
+import { getCurrentFirstname, getForms } from "../../services/firebase";
 import "firebase/auth";
 import "firebase/firestore";
 
 interface Props {}
 
 const HomePage: React.FC<Props> = (props) => {
+  React.useEffect(() => {
+    getForms();
+  });
+
   return (
     <React.Fragment>
-      <NavBar firstname={firebase.getCurrentFirstname() || "stranger"} />
+      <NavBar firstname={getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Header />
         <Checklist title="" description="" forms={checklistCards} />
