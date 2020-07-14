@@ -14,15 +14,15 @@ import {
 import LoginPage from "./pages/login-page";
 import SignUpPage from "./pages/signup-page";
 import FormPage from "./pages/form";
+import { auth } from "./services/firebase";
 import AccountDetails from "./pages/accountdetails";
-import firebase from "./components/firebase";
 
 export default function App() {
   const [firebaseInitialized, setFirebaseInialized] = useState(false);
 
   useEffect(() => {
-    firebase.isInitialized().then((val: boolean) => {
-      setFirebaseInialized(val);
+    auth.onAuthStateChanged((authUser) => {
+      authUser ? setFirebaseInialized(true) : setFirebaseInialized(false);
     });
   });
 

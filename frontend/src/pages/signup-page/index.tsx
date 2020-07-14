@@ -6,7 +6,7 @@ import FormTextField from "../../components/text-field";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import firebase from "../../components/firebase";
+import { signUp } from "../../services/firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import { useHistory } from "react-router-dom";
@@ -80,9 +80,8 @@ const SignUpPage = () => {
 
   async function onRegister() {
     try {
-      await firebase.register(
+      await signUp(
         userDataState.basicDetails.firstname,
-        userDataState.basicDetails.lastname,
         userDataState.basicDetails.email,
         userDataState.basicDetails.password
       );

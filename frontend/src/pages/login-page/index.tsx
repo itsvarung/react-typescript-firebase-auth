@@ -7,7 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import firebase from "../../components/firebase";
+import { login } from "../../services/firebase";
 import "firebase/auth";
 import "firebase/firestore";
 import { useHistory } from "react-router-dom";
@@ -67,7 +67,7 @@ const LoginPage = () => {
 
   async function handleSubmit() {
     try {
-      await firebase.login(
+      await login(
         userDataState.basicDetails.email,
         userDataState.basicDetails.password
       );

@@ -7,7 +7,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import IconButton from "@material-ui/core/IconButton";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import firebase from "../firebase";
+import { logout } from "../../services/firebase";
 import { useHistory } from "react-router-dom";
 
 interface Props {
@@ -41,9 +41,9 @@ const NavBar: React.FC<Props> = (props) => {
     history.push("/account");
   };
 
-  async function logout() {
+  async function logUserOut() {
     try {
-      await firebase.logout();
+      await logout();
       history.replace("/login");
     } catch (error) {
       alert(error.message);
@@ -87,7 +87,7 @@ const NavBar: React.FC<Props> = (props) => {
             <AccountCircle />
             <h3>{props.firstname}</h3>
             <MenuItem onClick={handleClick}>My Details</MenuItem>
-            <MenuItem onClick={logout}>Logout</MenuItem>
+            <MenuItem onClick={logUserOut}>Logout</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>

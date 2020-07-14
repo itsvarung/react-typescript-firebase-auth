@@ -6,7 +6,7 @@ import * as User from "../../models/User";
 import FormSection from "../../components/form/form-section";
 import FormStepper from "../../components/form/stepper";
 import FormNavigation from "../../components/form/navigation-buttons";
-import firebase from "../../components/firebase";
+import { getCurrentFirstname } from "../../services/firebase";
 import "firebase/auth";
 import "firebase/firestore";
 
@@ -61,7 +61,7 @@ const FormPage: React.FC<Props> = (props) => {
 
   return (
     <React.Fragment>
-      <NavBar firstname={firebase.getCurrentFirstname() || "stranger"} />
+      <NavBar firstname={getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Styles.CenteredWrapper>
           <FormStepper

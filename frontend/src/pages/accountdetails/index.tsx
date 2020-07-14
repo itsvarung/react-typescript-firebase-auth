@@ -6,11 +6,9 @@ import HeaderLoggedOut from "../../components/accountdetails/headerloggedout";
 import Section from "../../components/accountdetails/section";
 import * as Styles from "./styles";
 import { Form, InputType, TypeOfData } from "../../models/Form";
-import firebase from "../../components/firebase";
+import { getCurrentFirstname } from "../../services/firebase";
 import "firebase/auth";
 import "firebase/firestore";
-import Button from "@material-ui/core/Button";
-import { fade } from "@material-ui/core/styles/colorManipulator";
 import { useHistory } from "react-router-dom";
 
 interface Props {}
@@ -20,7 +18,7 @@ const AccountDetails: React.FC<Props> = (props) => {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    const theName = firebase.getCurrentFirstname();
+    const theName = getCurrentFirstname();
     theName ? setName(theName) : setName("");
     setLoading(false);
   }, []);
@@ -44,7 +42,7 @@ const AccountDetails: React.FC<Props> = (props) => {
     </React.Fragment>
   ) : name ? (
     <React.Fragment>
-      <NavBar firstname={firebase.getCurrentFirstname() || "stranger"} />
+      <NavBar firstname={getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Header />
         <Section title="" description="" forms={formDetails} />

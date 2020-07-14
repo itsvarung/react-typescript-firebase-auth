@@ -6,8 +6,8 @@ import HeaderLoggedOut from "../../components/homepage/headerloggedout";
 import * as Styles from "./styles";
 import { Form, InputType, TypeOfData } from "../../models/Form";
 import Checklist from "../../components/homepage/checklist";
+import { getCurrentFirstname, getForms } from "../../services/firebase";
 import ChecklistLoggedOut from "../../components/homepage/checklistloggedout";
-import firebase from "../../components/firebase";
 import "firebase/auth";
 import "firebase/firestore";
 
@@ -18,7 +18,8 @@ const HomePage: React.FC<Props> = (props) => {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    const theName = firebase.getCurrentFirstname();
+    getForms();
+    const theName = getCurrentFirstname();
     theName ? setName(theName) : setName("");
     setLoading(false);
   }, []);
@@ -32,7 +33,7 @@ const HomePage: React.FC<Props> = (props) => {
     </React.Fragment>
   ) : name ? (
     <React.Fragment>
-      <NavBar firstname={firebase.getCurrentFirstname() || "stranger"} />
+      <NavBar firstname={getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Header />
         <Checklist title="" description="" forms={checklistCards} />
