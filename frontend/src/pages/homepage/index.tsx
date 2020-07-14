@@ -11,7 +11,7 @@ import firebase from "../../components/firebase";
 import "firebase/auth";
 import "firebase/firestore";
 
-interface Props {}
+interface Props {} // I see you
 
 const HomePage: React.FC<Props> = (props) => {
   const [isLoading, setLoading] = useState(true);
