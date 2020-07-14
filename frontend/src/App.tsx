@@ -14,18 +14,19 @@ import {
 import LoginPage from "./pages/login-page";
 import SignUpPage from "./pages/signup-page";
 import FormPage from "./pages/form";
-import { auth } from "./services/firebase";
+import { auth, AuthUserContext } from "./services/firebase";
 import AccountDetails from "./pages/accountdetails";
 
 export default function App() {
-  const [firebaseInitialized, setFirebaseInialized] = useState(false);
+  const [authUser, setAuthUser] = useState<firebase.User | null>(null);
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
-      authUser ? setFirebaseInialized(true) : setFirebaseInialized(false);
+      authUser ? setAuthUser(authUser) : setAuthUser(null);
     });
   });
 
+<<<<<<< HEAD
   /// return firebaseInitialized !== false ? (
 
   <React.Fragment>
@@ -44,4 +45,20 @@ export default function App() {
   /// ) : (
   /// <div id="loader">LOADING</div>
   /// );
+=======
+  return (
+    <AuthUserContext.Provider value={authUser}>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignUpPage} />
+          <Route path="/form" component={FormPage} />
+          <Route path="/account" component={AccountDetails} />
+        </Switch>
+      </BrowserRouter>
+    </AuthUserContext.Provider>
+  );
+>>>>>>> 97ec195fc469555f1bf462be911a44d0849c9467
 }
