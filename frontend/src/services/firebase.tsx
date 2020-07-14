@@ -1,3 +1,4 @@
+import React from "react";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firebase-firestore";
@@ -21,6 +22,7 @@ if (!firebase.apps.length) {
 
 export const auth = firebase.auth();
 export const db = firebase.firestore();
+export const AuthUserContext = React.createContext<firebase.User | null>(null);
 
 // login the user
 // Parameters:
@@ -35,7 +37,7 @@ export const logout = () => auth.signOut();
 
 // Sign Up the user to the website
 // Parameters:
-//  -firstname: users first name
+//  - firstname: users first name
 //  - username: desired users username
 //  - password: desired password of the user
 export async function signUp(
