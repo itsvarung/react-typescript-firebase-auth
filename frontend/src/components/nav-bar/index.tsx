@@ -41,7 +41,7 @@ const NavBar: React.FC<Props> = (props) => {
     history.push("/account");
   };
 
-  async function logout() {
+  async function logUserOut() {
     try {
       await logout();
       history.replace("/login");
@@ -87,7 +87,7 @@ const NavBar: React.FC<Props> = (props) => {
             <AccountCircle />
             <h3>{props.firstname}</h3>
             <MenuItem onClick={handleClick}>My Details</MenuItem>
-            <MenuItem onClick={logout}>Logout</MenuItem>
+            <MenuItem onClick={logUserOut}>Logout</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>

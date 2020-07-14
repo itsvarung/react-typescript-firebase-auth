@@ -31,9 +31,7 @@ export function login(username: string, password: string) {
 }
 
 // logout logs the user out
-export function logout() {
-  return auth.signOut();
-}
+export const logout = () => auth.signOut();
 
 // Sign Up the user to the website
 // Parameters:
@@ -71,16 +69,10 @@ export const getCurrentFirstname = () =>
 
 //   // gets all data from collection
 export async function getForms() {
-  // const snapshot = await db.collection("forms").get();
-  // const docData = snapshot.docs.map((doc) => doc.data());
-  // const forms: Form[] = docData[0].data();
-  // console.log(forms);
-
   db.collection("forms")
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
-        // doc.data() is never undefined for query doc snapshots
         const data = doc.data();
         const form: Form = {
           title: data.title,
@@ -92,32 +84,8 @@ export async function getForms() {
           url: data.url,
         };
         console.log(form);
+
         // console.log(doc.id, " => ", doc.data());
       });
     });
 }
-
-// (async function test() {
-
-// 	try {
-
-// 		var bennadel: firebase.database.Reference = db.ref( "testing/ben-nadel" );
-
-// 		await bennadel.set({
-// 			name: "Ben Nadel",
-// 			passions: [ "JavaScript", "TypeScript", "Angular", "ColdFusion", "UX" ]
-// 		});
-
-// 		var bennadelSnapshot: firebase.database.DataSnapshot = await bennadel.once( "value" );
-
-// 		console.log( "Firebase Ref Value:" );
-// 		console.dir( bennadelSnapshot.val() );
-
-// 	} catch ( error ) {
-
-// 		console.log( "Error!" );
-// 		console.log( error );
-
-// 	}
-
-// })();
