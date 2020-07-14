@@ -26,21 +26,22 @@ export default function App() {
     });
   });
 
-  return firebaseInitialized !== false ? (
-    <React.Fragment>
-      <GlobalStyle />
+  /// return firebaseInitialized !== false ? (
 
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/signup" component={SignUpPage} />
-          <Route path="/form" component={FormPage} />
-          <Route path="/account" component={AccountDetails} />
-        </Switch>
-      </BrowserRouter>
-    </React.Fragment>
-  ) : (
-    <div id="loader"></div>
-  );
+  <React.Fragment>
+    <GlobalStyle />
+
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/signup" component={SignUpPage} />
+        <Route path="/form" component={FormPage} />
+        <Route path="/account" component={AccountDetails} />
+      </Switch>
+    </BrowserRouter>
+  </React.Fragment>;
+  /// ) : (
+  /// <div id="loader">LOADING</div>
+  /// );
 }
