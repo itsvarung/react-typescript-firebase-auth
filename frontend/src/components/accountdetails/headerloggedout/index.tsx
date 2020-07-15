@@ -60,10 +60,13 @@ const HeaderLoggedOut: React.FC<Props> = (props) => {
           <Grid item xs={4}>
             <Grid container spacing={0}>
               <Grid item xs={12}>
-                <H1>Form filling made simple.</H1>
+                <H1>You don't seem to be logged in!</H1>
               </Grid>
               <Grid item xs={12}>
-                <H2>The one stop source for all your form filling needs</H2>
+                <H2>
+                  Please log in or create an account with us to view your
+                  detials.
+                </H2>
               </Grid>
               <Styles.ButtonsWrapper>
                 <Button
