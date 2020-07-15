@@ -14,6 +14,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Button from "@material-ui/core/Button";
 import * as Styles from "./styles";
 import obiwan from "../../../images/Obiwan.svg";
+import NavBar from "../../nav-bar";
 
 interface Props {}
 
@@ -41,23 +42,26 @@ const useStyles = makeStyles((theme: Theme) =>
 const HeaderLoading: React.FC<Props> = (props) => {
   const classes = useStyles();
   return (
-    <Grid item xs={12}>
-      <BackgroundCard>
-        <Grid container spacing={0}>
-          <Grid item xs={1}></Grid>
-          <Grid item xs={4}>
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
-                <H1>Una is loading...</H1>
-              </Grid>
-              <Grid item xs={12}>
-                <img src={obiwan} alt="Loading..." />
+    <React.Fragment>
+      <NavBar firstname={"General Bold One"} />
+      <Grid item xs={12}>
+        <BackgroundCard>
+          <Grid container spacing={0}>
+            <Grid item xs={1}></Grid>
+            <Grid item xs={4}>
+              <Grid container spacing={0}>
+                <Grid item xs={12}>
+                  <H1>Una is loading...</H1>
+                </Grid>
+                <Grid item xs={12}>
+                  <img src={obiwan} alt="Loading..." />
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </BackgroundCard>
-    </Grid>
+        </BackgroundCard>
+      </Grid>
+    </React.Fragment>
   );
 };
 export default HeaderLoading;

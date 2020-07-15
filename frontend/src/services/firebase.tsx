@@ -79,7 +79,8 @@ export const getCurrentFirstname = () =>
 export async function getForms() {
   var forms: Form[] = [];
 
-  db.collection("forms")
+  await db
+    .collection("forms")
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {

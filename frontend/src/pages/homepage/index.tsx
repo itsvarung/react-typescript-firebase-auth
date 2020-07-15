@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/nav-bar";
 import Header from "../../components/homepage/header";
-import HeaderLoading from "../../components/homepage/headerloading";
 import HeaderLoggedOut from "../../components/homepage/headerloggedout";
 import * as Styles from "./styles";
 import { Form, InputType, TypeOfData } from "../../models/Form";
 import Checklist from "../../components/homepage/checklist";
 import { getCurrentFirstname, getForms } from "../../services/firebase";
+import CircularIndeterminate from "../../components/homepage/loading";
 import ChecklistLoggedOut from "../../components/homepage/checklistloggedout";
 import "firebase/auth";
 import "firebase/firestore";
@@ -23,48 +23,34 @@ const HomePage: React.FC<Props> = (props) => {
     const theName = getCurrentFirstname();
     theName ? setName(theName) : setName("");
     setLoading(false);
+    console.log("Speed Test");
   }, []);
 
   async function getData() {
     const fetchedForms: Form[] = await getForms();
     setForms(fetchedForms);
-
     console.log(fetchedForms);
   }
 
-  return isLoading ? (
-    <React.Fragment>
-      <NavBar firstname={"Obi Wan"} />
-      <Styles.MainWrapper>
-        <HeaderLoading />
-      </Styles.MainWrapper>
-    </React.Fragment>
-  ) : name ? (
+  return forms.length !== 0 ? (
     <React.Fragment>
       <NavBar firstname={getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Header />
-        <Checklist title="" description="" forms={forms} />
         <Checklist
-          title="University Checklist"
-          description="Start university with your best foot forward"
+          title="Checklists"
+          description="Easy groups to get you started."
+          forms={checklistCards}
+        />
+        <Checklist
+          title="All Forms"
+          description="Is it me you're looking for?"
           forms={forms}
         />
       </Styles.MainWrapper>
     </React.Fragment>
   ) : (
-    <React.Fragment>
-      <NavBar firstname={"stranger"} />
-      <Styles.MainWrapper>
-        <HeaderLoggedOut />
-        <ChecklistLoggedOut title="" description="" forms={forms} />
-        <ChecklistLoggedOut
-          title="University Checklist"
-          description="Start university with your best foot forward"
-          forms={forms}
-        />
-      </Styles.MainWrapper>
-    </React.Fragment>
+    <CircularIndeterminate />
   );
 };
 
