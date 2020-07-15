@@ -26,26 +26,6 @@ export default function App() {
     });
   });
 
-<<<<<<< HEAD
-  /// return firebaseInitialized !== false ? (
-
-  <React.Fragment>
-    <GlobalStyle />
-
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/signup" component={SignUpPage} />
-        <Route path="/form" component={FormPage} />
-        <Route path="/account" component={AccountDetails} />
-      </Switch>
-    </BrowserRouter>
-  </React.Fragment>;
-  /// ) : (
-  /// <div id="loader">LOADING</div>
-  /// );
-=======
   return (
     <AuthUserContext.Provider value={authUser}>
       <GlobalStyle />
@@ -60,5 +40,4 @@ export default function App() {
       </BrowserRouter>
     </AuthUserContext.Provider>
   );
->>>>>>> 97ec195fc469555f1bf462be911a44d0849c9467
 }

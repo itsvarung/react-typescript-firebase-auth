@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../../components/nav-bar";
 import Header from "../../components/homepage/header";
-import HeaderLoading from "../../components/homepage/headerloading";
 import HeaderLoggedOut from "../../components/homepage/headerloggedout";
 import * as Styles from "./styles";
 import { Form, InputType, TypeOfData } from "../../models/Form";
@@ -27,9 +26,6 @@ const HomePage: React.FC<Props> = (props) => {
   return isLoading ? (
     <React.Fragment>
       <NavBar firstname={"Obi Wan"} />
-      <Styles.MainWrapper>
-        <HeaderLoading />
-      </Styles.MainWrapper>
     </React.Fragment>
   ) : name ? (
     <React.Fragment>
