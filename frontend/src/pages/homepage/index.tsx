@@ -16,13 +16,21 @@ interface Props {}
 const HomePage: React.FC<Props> = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [name, setName] = useState("");
+  const [forms, setForms] = useState<Form[]>([]);
 
   useEffect(() => {
-    getForms();
+    getData();
     const theName = getCurrentFirstname();
     theName ? setName(theName) : setName("");
     setLoading(false);
   }, []);
+
+  async function getData() {
+    const fetchedForms: Form[] = await getForms();
+    setForms(fetchedForms);
+
+    console.log(fetchedForms);
+  }
 
   return isLoading ? (
     <React.Fragment>
@@ -36,11 +44,11 @@ const HomePage: React.FC<Props> = (props) => {
       <NavBar firstname={getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Header />
-        <Checklist title="" description="" forms={checklistCards} />
+        <Checklist title="" description="" forms={forms} />
         <Checklist
           title="University Checklist"
           description="Start university with your best foot forward"
-          forms={checklistCards}
+          forms={forms}
         />
       </Styles.MainWrapper>
     </React.Fragment>
@@ -49,11 +57,11 @@ const HomePage: React.FC<Props> = (props) => {
       <NavBar firstname={"stranger"} />
       <Styles.MainWrapper>
         <HeaderLoggedOut />
-        <ChecklistLoggedOut title="" description="" forms={checklistCards} />
+        <ChecklistLoggedOut title="" description="" forms={forms} />
         <ChecklistLoggedOut
           title="University Checklist"
           description="Start university with your best foot forward"
-          forms={checklistCards}
+          forms={forms}
         />
       </Styles.MainWrapper>
     </React.Fragment>
