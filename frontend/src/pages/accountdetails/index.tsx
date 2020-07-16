@@ -17,6 +17,32 @@ interface Props {
 const AccountDetails: React.FC<Props> = (props) => {
   const name = "Jon";
 
+  //Current user object
+  const [userDataState, updateUserDataState] = React.useState(newUser);
+
+  //Handles any changes to form values
+  const handleInputChange = (
+    formSection: Form.FormSection,
+    inputType: Form.InputType,
+    e: React.ChangeEvent<any>
+  ) => {
+    //Get the current User Details Section that is being updated and update it with the new values
+    const currentSectionOfUserDataBeingUpdated =
+      userDataState[formSection.typeOfData];
+    currentSectionOfUserDataBeingUpdated[inputType] = e.target.value;
+
+    //Update state with updated user details section
+    updateUserDataState({
+      ...userDataState,
+      [formSection.typeOfData]: currentSectionOfUserDataBeingUpdated,
+    });
+  };
+
+  //Submits changes to firestore
+  const submitChanges = () => {
+    console.log("submitted");
+  };
+
   return name ? (
     // If user is logged in show them:
     <React.Fragment>
@@ -24,7 +50,13 @@ const AccountDetails: React.FC<Props> = (props) => {
       <Styles.MainWrapper>
         <Styles.CenteredWrapper>
           {formSample.formSections.map((section) => (
-            <Card user={newUser} section={section} />
+            <Card
+              user={newUser}
+              section={section}
+              key={section.typeOfData}
+              handleChange={handleInputChange}
+              submitChanges={submitChanges}
+            />
           ))}
         </Styles.CenteredWrapper>
       </Styles.MainWrapper>
@@ -101,40 +133,6 @@ const formSample: Form.Form = {
           label: "Password",
           helperText: "j1233",
           inputType: Form.InputType.password,
-        },
-      ],
-    },
-    {
-      typeOfData: Form.TypeOfData.basicDetails,
-      title: "More Information",
-      subtitle: "Tell us a little bit about you",
-      fields: [
-        {
-          label: "Email",
-          helperText: "John",
-          inputType: Form.InputType.email,
-        },
-        {
-          label: "Address",
-          helperText: "Doe",
-          inputType: Form.InputType.address,
-        },
-      ],
-    },
-    {
-      typeOfData: Form.TypeOfData.basicDetails,
-      title: "Last But Not Least",
-      subtitle: "Tell us a little bit about you",
-      fields: [
-        {
-          label: "Email",
-          helperText: "John",
-          inputType: Form.InputType.email,
-        },
-        {
-          label: "Address",
-          helperText: "Doe",
-          inputType: Form.InputType.address,
         },
       ],
     },
