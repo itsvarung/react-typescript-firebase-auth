@@ -65,13 +65,22 @@ export const doPasswordUpdate = async (password: string) => {
   throw Error("No auth.currentUser!");
 };
 
+export function isInitialized() {
+  return new Promise((resolve) => {
+    auth.onAuthStateChanged(resolve);
+  });
+}
+
 // Get Users first name
 export const getCurrentFirstname = () =>
   auth.currentUser && auth.currentUser.displayName;
 
 //   // gets all data from collection
 export async function getForms() {
-  db.collection("forms")
+  var forms: Form[] = [];
+
+  await db
+    .collection("forms")
     .get()
     .then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
@@ -85,9 +94,10 @@ export async function getForms() {
           progress: data.progress,
           url: data.url,
         };
-        console.log(form);
-
+        // console.log(form);
+        forms.push(form);
         // console.log(doc.id, " => ", doc.data());
       });
     });
+  return forms;
 }

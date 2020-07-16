@@ -6,6 +6,7 @@ import * as Styles from "./styles";
 import { Form, InputType, TypeOfData } from "../../models/Form";
 import Checklist from "../../components/homepage/checklist";
 import { getCurrentFirstname, getForms } from "../../services/firebase";
+import CircularIndeterminate from "../../components/homepage/loading";
 import ChecklistLoggedOut from "../../components/homepage/checklistloggedout";
 import "firebase/auth";
 import "firebase/firestore";
@@ -15,44 +16,41 @@ interface Props {} // I see you
 const HomePage: React.FC<Props> = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [name, setName] = useState("");
+  const [forms, setForms] = useState<Form[]>([]);
 
   useEffect(() => {
-    getForms();
+    getData();
     const theName = getCurrentFirstname();
     theName ? setName(theName) : setName("");
     setLoading(false);
+    console.log("Speed Test");
   }, []);
 
-  return isLoading ? (
-    <React.Fragment>
-      <NavBar firstname={"Obi Wan"} />
-    </React.Fragment>
-  ) : name ? (
+  async function getData() {
+    const fetchedForms: Form[] = await getForms();
+    setForms(fetchedForms);
+    console.log(fetchedForms);
+  }
+
+  return forms.length !== 0 ? (
     <React.Fragment>
       <NavBar firstname={getCurrentFirstname() || "stranger"} />
       <Styles.MainWrapper>
         <Header />
-        <Checklist title="" description="" forms={checklistCards} />
         <Checklist
-          title="University Checklist"
-          description="Start university with your best foot forward"
+          title="Checklists"
+          description="Easy groups to get you started."
           forms={checklistCards}
+        />
+        <Checklist
+          title="All Forms"
+          description="Is it me you're looking for?"
+          forms={forms}
         />
       </Styles.MainWrapper>
     </React.Fragment>
   ) : (
-    <React.Fragment>
-      <NavBar firstname={"stranger"} />
-      <Styles.MainWrapper>
-        <HeaderLoggedOut />
-        <ChecklistLoggedOut title="" description="" forms={checklistCards} />
-        <ChecklistLoggedOut
-          title="University Checklist"
-          description="Start university with your best foot forward"
-          forms={checklistCards}
-        />
-      </Styles.MainWrapper>
-    </React.Fragment>
+    <CircularIndeterminate />
   );
 };
 

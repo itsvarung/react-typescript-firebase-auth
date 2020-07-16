@@ -14,20 +14,28 @@ import {
 import LoginPage from "./pages/login-page";
 import SignUpPage from "./pages/signup-page";
 import FormPage from "./pages/form";
-import { auth, AuthUserContext } from "./services/firebase";
+import { auth, AuthUserContext, isInitialized } from "./services/firebase";
 import AccountDetails from "./pages/accountdetails";
 
 export default function App() {
   const [authUser, setAuthUser] = useState<firebase.User | null>(null);
-
+  const [firebaseInitialized, setFirebaseInialized] = useState<
+    boolean | unknown
+  >(false);
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       authUser ? setAuthUser(authUser) : setAuthUser(null);
     });
   });
 
-  return (
-    <AuthUserContext.Provider value={authUser}>
+  useEffect(() => {
+    isInitialized().then((val: boolean | unknown) => {
+      setFirebaseInialized(val);
+    });
+  });
+
+  return firebaseInitialized !== false ? (
+    <React.Fragment>
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
@@ -35,9 +43,10 @@ export default function App() {
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />
           <Route path="/form" component={FormPage} />
-          <Route path="/account" component={AccountDetails} />
         </Switch>
       </BrowserRouter>
-    </AuthUserContext.Provider>
+    </React.Fragment>
+  ) : (
+    <div id="loader"></div>
   );
 }
