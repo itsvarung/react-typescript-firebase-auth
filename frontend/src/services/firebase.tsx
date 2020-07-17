@@ -75,7 +75,7 @@ export function isInitialized() {
 export const getCurrentFirstname = () =>
   auth.currentUser && auth.currentUser.displayName;
 
-//   // gets all data from collection
+// gets all data from collection
 export async function getForms() {
   var forms: Form[] = [];
 
@@ -94,9 +94,7 @@ export async function getForms() {
           progress: data.progress,
           url: data.url,
         };
-        // console.log(form);
         forms.push(form);
-        // console.log(doc.id, " => ", doc.data());
       });
     });
   return forms;
