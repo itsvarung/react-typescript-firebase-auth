@@ -6,7 +6,13 @@ interface Props {
   formField: Form.FormField;
   defaultValue: string;
   isDisabled: Boolean;
-  handleChange: (inputType: Form.InputType, e: React.ChangeEvent<any>) => void;
+  handleChange: (
+    inputType:
+      | Form.BasicDetailsInputType
+      | Form.AddressDetailsInputType
+      | Form.PrimeInputType,
+    e: React.ChangeEvent<any>
+  ) => void;
 }
 
 // Creates a disabled textfield to display user details

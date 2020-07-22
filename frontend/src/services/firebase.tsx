@@ -99,3 +99,42 @@ export async function getForms() {
     });
   return forms;
 }
+
+export async function getForm(id: string) {
+  var form: Form = {
+    title: "",
+    description: "",
+    formSections: [],
+    id: 11111,
+    url: "",
+    cardColor: "",
+    progress: 0,
+  };
+
+  await db
+    .collection("forms")
+    .doc(id)
+    .get()
+    .then(function (doc) {
+      if (doc.exists) {
+        console.log(doc.data() as Form);
+        const returnedData = doc.data() as Form;
+        form = {
+          title: returnedData.title,
+          description: returnedData.description,
+          formSections: returnedData.formSections,
+          id: returnedData.id,
+          url: returnedData.url,
+          cardColor: returnedData.cardColor,
+          progress: returnedData.progress,
+        };
+      } else {
+        return form;
+      }
+    })
+    .catch(function (error) {
+      console.log("Error getting document:", error);
+    });
+
+  return form;
+}

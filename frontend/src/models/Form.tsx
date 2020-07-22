@@ -17,20 +17,42 @@ export interface FormSection {
 
 export enum TypeOfData {
   basicDetails = "basicDetails",
+  addressDetails = "addressDetails",
+  primeDetails = "primeDetails",
 }
 
 export interface FormField {
   label: string;
   helperText: string;
-  inputType: InputType;
+  inputType: BasicDetailsInputType | AddressDetailsInputType | PrimeInputType;
 }
 
-export enum InputType {
+export enum BasicDetailsInputType {
   firstname = "firstname",
   lastname = "lastname",
   phone = "phone",
   email = "email",
   dob = "dob",
-  address = "address",
   password = "password",
+}
+
+export enum AddressDetailsInputType {
+  address = "address",
+  city = "city",
+  postcode = "postcode",
+}
+
+export enum PrimeInputType {
+  subPeriod = "subPeriod",
+}
+
+export function getInputTypeEnumForTypeOfData(typeOfData: TypeOfData) {
+  switch (typeOfData) {
+    case TypeOfData.basicDetails:
+      return BasicDetailsInputType;
+    case TypeOfData.addressDetails:
+      return BasicDetailsInputType;
+    case TypeOfData.primeDetails:
+      return BasicDetailsInputType;
+  }
 }

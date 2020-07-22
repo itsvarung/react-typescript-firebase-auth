@@ -13,7 +13,10 @@ interface Props {
   user: User.User;
   handleChange: (
     formSection: Form.FormSection,
-    inputType: Form.InputType,
+    inputType:
+      | Form.BasicDetailsInputType
+      | Form.AddressDetailsInputType
+      | Form.PrimeInputType,
     e: React.ChangeEvent<any>
   ) => void;
   submitChanges: () => void;
@@ -38,7 +41,10 @@ const Card: React.FC<Props> = (props) => {
   //  - inputType: the type of data that has just been altered
   //  - e: the event that just took place and the html component that it took place in
   function handleChangeInput(
-    inputType: Form.InputType,
+    inputType:
+      | Form.BasicDetailsInputType
+      | Form.AddressDetailsInputType
+      | Form.PrimeInputType,
     e: React.ChangeEvent<any>
   ) {
     props.handleChange(props.section, inputType, e);
@@ -76,10 +82,17 @@ const Card: React.FC<Props> = (props) => {
                   helperText: field.helperText,
                   inputType: field.inputType,
                 }}
-                defaultValue={props.user.basicDetails[field.inputType]}
+                defaultValue={User.getValueFromUserAttribute(
+                  props.user[props.section.typeOfData],
+                  props.section.typeOfData,
+                  field.inputType
+                )}
                 isDisabled={isEditing}
                 handleChange={(
-                  inputType: Form.InputType,
+                  inputType:
+                    | Form.BasicDetailsInputType
+                    | Form.AddressDetailsInputType
+                    | Form.PrimeInputType,
                   e: React.ChangeEvent<any>
                 ) => {
                   handleChangeInput(inputType, e);

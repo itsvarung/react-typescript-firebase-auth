@@ -1,13 +1,12 @@
 import React from "react";
 import { Card, CardH1, CardH2, TextWrapper, ViewMoreLink } from "./styles";
 import { ProgressBar } from "./progress-bar";
+import { Form } from "../../../models/Form";
+import Button from "@material-ui/core/Button";
 
 interface Props {
-  title: String;
-  description: String;
-  cardColor: String;
-  progress: number;
-  url: string;
+  form: Form;
+  handleFormSelection: (formId: number) => void;
 }
 
 const FormCard: React.FC<Props> = (props) => {
@@ -15,14 +14,19 @@ const FormCard: React.FC<Props> = (props) => {
     <Card>
       <TextWrapper>
         <div>
-          <CardH1>{props.title}</CardH1>
-          <CardH2>{props.description}</CardH2>
-          <ViewMoreLink href={props.url} target="_blank">
+          <CardH1>{props.form.title}</CardH1>
+          <CardH2>{props.form.description}</CardH2>
+          <Button
+            color="primary"
+            onClick={() => {
+              props.handleFormSelection(props.form.id);
+            }}
+          >
             View More
-          </ViewMoreLink>
+          </Button>
         </div>
       </TextWrapper>
-      <ProgressBar progress={props.progress} />
+      <ProgressBar progress={props.form.progress} />
     </Card>
   );
 };

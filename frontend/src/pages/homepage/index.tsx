@@ -3,17 +3,19 @@ import NavBar from "../../components/nav-bar";
 import Header from "../../components/homepage/header";
 import HeaderLoggedOut from "../../components/homepage/headerloggedout";
 import * as Styles from "./styles";
-import { Form, InputType, TypeOfData } from "../../models/Form";
+import { Form, TypeOfData, BasicDetailsInputType } from "../../models/Form";
 import Checklist from "../../components/homepage/checklist";
 import { getCurrentFirstname, getForms } from "../../services/firebase";
 import CircularIndeterminate from "../../components/homepage/loading";
-import ChecklistLoggedOut from "../../components/homepage/checklistloggedout";
 import "firebase/auth";
 import "firebase/firestore";
+import { useHistory } from "react-router-dom";
 
 interface Props {} // I see you
 
 const HomePage: React.FC<Props> = (props) => {
+  const history = useHistory();
+
   const [isLoading, setLoading] = useState(true);
   const [name, setName] = useState("");
   const [forms, setForms] = useState<Form[]>([]);
@@ -32,6 +34,10 @@ const HomePage: React.FC<Props> = (props) => {
     console.log(fetchedForms);
   }
 
+  const handleFormSelection = (formId: number) => {
+    history.push(`/form/${formId}`);
+  };
+
   return forms.length !== 0 ? (
     <React.Fragment>
       <NavBar firstname={getCurrentFirstname() || "stranger"} />
@@ -41,11 +47,13 @@ const HomePage: React.FC<Props> = (props) => {
           title="Checklists"
           description="Easy groups to get you started."
           forms={checklistCards}
+          handleFormSelection={handleFormSelection}
         />
         <Checklist
           title="All Forms"
           description="Is it me you're looking for?"
           forms={forms}
+          handleFormSelection={handleFormSelection}
         />
       </Styles.MainWrapper>
     </React.Fragment>
@@ -73,12 +81,12 @@ const checklistCards: Form[] = [
           {
             label: "First Name",
             helperText: "John",
-            inputType: InputType.firstname,
+            inputType: BasicDetailsInputType.firstname,
           },
           {
             label: "Last Name",
             helperText: "Doe",
-            inputType: InputType.lastname,
+            inputType: BasicDetailsInputType.lastname,
           },
         ],
       },

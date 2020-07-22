@@ -6,7 +6,13 @@ import Grid from "@material-ui/core/Grid";
 interface Props {
   formField: Form.FormField;
   defaultValue: string;
-  handleChange: (inputType: Form.InputType, e: React.ChangeEvent<any>) => void;
+  handleChange: (
+    inputType:
+      | Form.BasicDetailsInputType
+      | Form.AddressDetailsInputType
+      | Form.PrimeInputType,
+    e: React.ChangeEvent<any>
+  ) => void;
 }
 
 // Creates a textfield

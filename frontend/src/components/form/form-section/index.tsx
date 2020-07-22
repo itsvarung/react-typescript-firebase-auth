@@ -8,7 +8,13 @@ import * as User from "../../../models/User";
 interface Props {
   formSection: Form.FormSection;
   user: User.User;
-  handleChange: (inputType: Form.InputType, e: React.ChangeEvent<any>) => void;
+  handleChange: (
+    inputType:
+      | Form.BasicDetailsInputType
+      | Form.AddressDetailsInputType
+      | Form.PrimeInputType,
+    e: React.ChangeEvent<any>
+  ) => void;
 }
 
 // Creates a component for a section of the current form you are viewing
@@ -33,11 +39,11 @@ const FormSection: React.FC<Props> = (props) => {
                   inputType: field.inputType,
                 }}
                 handleChange={props.handleChange}
-                defaultValue={
-                  props.user[Form.TypeOfData[props.formSection.typeOfData]][
-                    field.inputType
-                  ]
-                }
+                defaultValue={User.getValueFromUserAttribute(
+                  props.user[props.formSection.typeOfData],
+                  props.formSection.typeOfData,
+                  field.inputType
+                )}
               />
             </Grid>
           ))}

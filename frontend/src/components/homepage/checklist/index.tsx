@@ -8,6 +8,7 @@ interface Props {
   title: String;
   description: String;
   forms: Form[];
+  handleFormSelection: (formId: number) => void;
 }
 
 const Checklist: React.FC<Props> = (props) => {
@@ -21,11 +22,10 @@ const Checklist: React.FC<Props> = (props) => {
         {props.forms.map((form) => (
           <Grid item xs={4} key={form.id}>
             <FormCard
-              title={form.title}
-              description={form.description}
-              cardColor={form.cardColor}
-              progress={form.progress}
-              url={form.url}
+              form={form}
+              handleFormSelection={(formId) => {
+                props.handleFormSelection(formId);
+              }}
             />
           </Grid>
         ))}

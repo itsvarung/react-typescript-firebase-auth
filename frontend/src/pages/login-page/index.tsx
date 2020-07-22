@@ -20,14 +20,23 @@ const loginFormSection: Form.FormSection = {
     {
       label: "Email Address",
       helperText: "john@email.com",
-      inputType: Form.InputType.email,
+      inputType: Form.BasicDetailsInputType.email,
     },
     {
       label: "Password",
       helperText: "j1233",
-      inputType: Form.InputType.password,
+      inputType: Form.BasicDetailsInputType.password,
     },
   ],
+};
+
+var primeDetails: User.PrimeDetails = {
+  subPeriod: "",
+};
+var addressDetails: User.AddressDetails = {
+  address: "",
+  city: "",
+  postcode: "",
 };
 
 const newUser: User.User = {
@@ -40,6 +49,8 @@ const newUser: User.User = {
     dob: "",
     password: "",
   },
+  primeDetails: primeDetails,
+  addressDetails: addressDetails,
 };
 
 const LoginPage = () => {
@@ -48,18 +59,25 @@ const LoginPage = () => {
 
   //Handles any changes to form values
   const handleInputChange = (
-    inputType: Form.InputType,
+    inputType:
+      | Form.BasicDetailsInputType
+      | Form.AddressDetailsInputType
+      | Form.PrimeInputType,
     e: React.ChangeEvent<any>
   ) => {
     //Get the current User Details Section that is being updated and update it with the new values
     const currentSectionOfUserDataBeingUpdated =
       userDataState[loginFormSection.typeOfData];
-    currentSectionOfUserDataBeingUpdated[inputType] = e.target.value;
 
     //Update state with updated user details section
     updateUserDataState({
       ...userDataState,
-      [loginFormSection.typeOfData]: currentSectionOfUserDataBeingUpdated,
+      [loginFormSection.typeOfData]: User.updateUserDataType(
+        e.target.value,
+        loginFormSection.typeOfData,
+        currentSectionOfUserDataBeingUpdated,
+        inputType
+      ),
     });
   };
 

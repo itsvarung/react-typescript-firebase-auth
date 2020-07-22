@@ -23,18 +23,24 @@ const AccountDetails: React.FC<Props> = (props) => {
   //Handles any changes to form values
   const handleInputChange = (
     formSection: Form.FormSection,
-    inputType: Form.InputType,
+    inputType:
+      | Form.BasicDetailsInputType
+      | Form.AddressDetailsInputType
+      | Form.PrimeInputType,
     e: React.ChangeEvent<any>
   ) => {
     //Get the current User Details Section that is being updated and update it with the new values
-    const currentSectionOfUserDataBeingUpdated =
+    var currentSectionOfUserDataBeingUpdated =
       userDataState[formSection.typeOfData];
-    currentSectionOfUserDataBeingUpdated[inputType] = e.target.value;
 
-    //Update state with updated user details section
     updateUserDataState({
       ...userDataState,
-      [formSection.typeOfData]: currentSectionOfUserDataBeingUpdated,
+      [formSection.typeOfData]: User.updateUserDataType(
+        e.target.value,
+        formSection.typeOfData,
+        currentSectionOfUserDataBeingUpdated,
+        inputType
+      ),
     });
   };
 
@@ -74,6 +80,15 @@ const AccountDetails: React.FC<Props> = (props) => {
 
 export default AccountDetails;
 
+var primeDetails: User.PrimeDetails = {
+  subPeriod: "",
+};
+var addressDetails: User.AddressDetails = {
+  address: "",
+  city: "",
+  postcode: "",
+};
+
 const newUser: User.User = {
   basicDetails: {
     firstname: "Jordan",
@@ -84,6 +99,8 @@ const newUser: User.User = {
     dob: "01/01/2018",
     password: "BAD",
   },
+  primeDetails: primeDetails,
+  addressDetails: addressDetails,
 };
 
 const formSample: Form.Form = {
@@ -102,37 +119,37 @@ const formSample: Form.Form = {
         {
           label: "Firstname",
           helperText: "Joe",
-          inputType: Form.InputType.firstname,
+          inputType: Form.BasicDetailsInputType.firstname,
         },
         {
           label: "Lastname",
           helperText: "Bloggs",
-          inputType: Form.InputType.lastname,
+          inputType: Form.BasicDetailsInputType.lastname,
         },
         {
           label: "Email",
           helperText: "joe.bloggs@email.com",
-          inputType: Form.InputType.email,
+          inputType: Form.BasicDetailsInputType.email,
         },
         {
           label: "Address",
           helperText: "123 New Street",
-          inputType: Form.InputType.address,
+          inputType: Form.AddressDetailsInputType.address,
         },
         {
           label: "Phone",
           helperText: "07745360809",
-          inputType: Form.InputType.phone,
+          inputType: Form.BasicDetailsInputType.phone,
         },
         {
           label: "Dob",
           helperText: "01/01/2000",
-          inputType: Form.InputType.dob,
+          inputType: Form.BasicDetailsInputType.dob,
         },
         {
           label: "Password",
           helperText: "j1233",
-          inputType: Form.InputType.password,
+          inputType: Form.BasicDetailsInputType.password,
         },
       ],
     },

@@ -43,7 +43,7 @@ export default function App() {
           <Route path="/" exact component={HomePage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignUpPage} />
-          <Route path="/form" component={FormPage} />
+          <Route path="/form/:id" component={FormPage} />
           <Route path="/account" component={AccountDetails} />
         </Switch>
       </BrowserRouter>
